@@ -36,7 +36,7 @@ const Dashboard = () => {
   return (
     <main>
         <Header></Header>
-        <div className=' max-w-[1600px] px-5 mx-auto grid grid-cols-1 md:grid-cols-2 justify-between mt-10 py-2'>
+        <div className=' max-w-[1600px] px-5 flex flex-wrap justify-between items-start mt-10 py-2'>
             <Tasks task={tasks}></Tasks>
             <Sidebar></Sidebar>
         </div>

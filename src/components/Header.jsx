@@ -53,7 +53,7 @@ const Header = () => {
         <nav className="flex max-w-[1200px] mx-auto items-center justify-between px-2 py-20">
           <div className="flex first-line:justify-center flex-col">
             <div>
-              <h2 className="md:text-[55px] text-[40px] font-bold ">
+              <h2 className="md:text-[55px] text-[30px] font-bold ">
                 Welcome, {user && user.name}.
               </h2>
               <p>{new Date().toLocaleString()}</p>
@@ -61,9 +61,9 @@ const Header = () => {
           </div>
           <button
             onClick={onLogout}
-            className="bg-[#7FCD91] text-[#333] font-bold px-5 rounded py-3"
+            className="bg-[#7FCD91] text-[#333] font-bold px-3 rounded py-2"
           >
-            <span className="flex items-center justify-center gap-3 text-[19px]">
+            <span className="flex items-center justify-center gap-3 text-gray-700 font-bold text-[17px]">
               Log out <CiLogout size={32} color="#fff" />
             </span>
           </button>
