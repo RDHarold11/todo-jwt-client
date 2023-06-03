@@ -41,7 +41,7 @@ const Form = () => {
         <div className="mb-3">
           <label
             htmlFor="email"
-            className="text-gray-200 text-[17px] mb-2 font-semibold"
+            className="text-gray-200 text-[17px] mb-2 inline-block font-semibold"
           >
             Title
           </label>
@@ -52,19 +52,19 @@ const Form = () => {
             value={title}
             onChange={onChange}
             name="title"
-            className="block w-full border px-3 py-1 rounded-md text-gray-800 "
+            className="block w-full border px-3 py-1 rounded-md text-gray-200 bg-[transparent] "
           />
         </div>
         <div className="">
           <label
             htmlFor="description"
-            className="text-gray-200 text-[17px] mb-2 font-semibold"
+            className="text-gray-200 text-[17px] mb-2 inline-block font-semibold"
           >
             Description
           </label>
           <textarea
             placeholder="Enter a description"
-            className="w-full px-4 py-1 rounded-md text-gray-900 "
+            className="w-full px-4 py-1 rounded-md text-gray-200 bg-[transparent] border"
             name="description"
             onChange={onChange}
             id="description"
@@ -74,11 +74,11 @@ const Form = () => {
         <div className="flex flex-col mt-2 mb-2">
           <label
             htmlFor="option"
-            className="text-gray-200 text-[17px] mb-2 font-semibold"
+            className="text-gray-200 text-[17px] mb-2 inline-block font-semibold"
           >
             Category
           </label>
-          <select className="py-1 text-gray-900 px-3 rounded-md" name="category" value={category} onChange={onChange}>
+          <select className="py-1 text-gray-200 bg-[transparent] border px-3 rounded-md" name="category" value={category} onChange={onChange}>
           <option defaultValue className="text-gray-900 " value="">
             </option>
             <option className="text-gray-900" value="Deportes">
@@ -92,7 +92,7 @@ const Form = () => {
             </option>
           </select>
         </div>
-        <button className="bg-[#7FCD91] text-gray-200 mb-2 font-bold px-3 py-2 rounded text-[17px] w-full my-2">
+        <button className=" text-gray-200 mb-2 font-bold px-3 py-2 rounded text-[17px] w-full my-2 bg-[#7FCD91] hover:border-none">
           Add
         </button>
       </form>

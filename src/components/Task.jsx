@@ -3,6 +3,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { deleteTask } from "../features/tasks/taskSlice";
 import { Link } from "react-router-dom";
+import { BsPencilSquare } from "react-icons/bs";
 
 const Task = ({ task }) => {
   const dispatch = useDispatch();
@@ -16,16 +17,17 @@ const Task = ({ task }) => {
             {new Date(task?.createdAt).toLocaleString("en-us")}
           </p>
         </div>
-
-        <AiOutlineDelete
-          size={25}
-          cursor="pointer"
-          color="#FF0060"
-          onClick={() => dispatch(deleteTask(task._id))}
-        ></AiOutlineDelete>
-        {/* <button>
-          <Link to={`/update/${task._id}`}>Update</Link>{" "}
-        </button> */}
+        <div className="flex items-center justify-center gap-2">
+          <AiOutlineDelete
+            size={20}
+            cursor="pointer"
+            color="#FF0060"
+            onClick={() => dispatch(deleteTask(task._id))}
+          ></AiOutlineDelete>
+          <Link to={`/update/${task._id}`}>
+            <BsPencilSquare size={20} color="#7FCD91" />
+          </Link>
+        </div>
       </div>
       <div className="flex flex-col gap-5 justify-center mt-4 ">
         <p className="text-[15px] ">{task?.description}</p>

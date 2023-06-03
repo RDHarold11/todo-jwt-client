@@ -28,16 +28,19 @@ const Navbar = ({ toggle }) => {
           </h2>
         </div>
         <ul className="py-5">
-          <li className="mt-3 mb-3">
+          <li className="mt-3 mb-3 border-blue-gray-100 border-b hover:bg-[#7FCD91]">
             <button>
               <Link to="/">Home</Link>
             </button>
           </li>
-          <li className="mt-3 mb-3">
+          <li className="mt-3 mb-3 border-blue-gray-100 border-b hover:bg-[#7FCD91] ">
             <button>Importants</button>
           </li>
-          <li className="mt-3 mb-3">
+          <li className="mt-3 mb-3 border-blue-gray-100 border-b hover:bg-[#7FCD91]">
             <button>Favorites</button>
+          </li>
+          <li className="mt-3 mb-3 border-blue-gray-100 border-b hover:bg-[#7FCD91]">
+            <button>Add your own categories</button>
           </li>
           <li>
             <button

@@ -44,7 +44,7 @@ const Dashboard = () => {
             <Tasks task={tasks}></Tasks>
             <Sidebar></Sidebar>
         </div>
-        <div className="fixed bottom-10 right-10 bg-[#7FCD91] w-[50px] h-[50px] animate-bounce rounded-full flex items-center justify-center">
+        <div className="fixed bottom-10 right-10 bg-[#7FCD91] w-[50px] h-[50px] rounded-full flex items-center justify-center">
           <AiOutlinePlus size={30} cursor="pointer" onClick={() => setToggle(!toggle)}/>
         </div>
     </main>
