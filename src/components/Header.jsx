@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { logout, reset } from "../features/auth/authSlice";
-import { CiLogout } from "react-icons/ci";
 import images from "../data/img";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const Header = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  
   const [numImg, setNumImg] = useState(0);
   const { img } = images[numImg];
   const { user } = useSelector((state) => state.auth);
@@ -37,11 +33,7 @@ const Header = () => {
     });
   };
 
-  const onLogout = () => {
-    dispatch(logout());
-    dispatch(reset());
-    navigate("/");
-  };
+ 
   return (
     <>
       <header
@@ -53,20 +45,12 @@ const Header = () => {
         <nav className="flex max-w-[1200px] mx-auto items-center justify-between px-2 py-20">
           <div className="flex first-line:justify-center flex-col">
             <div>
-              <h2 className="md:text-[55px] text-[30px] font-bold ">
+              <h2 className="md:text-[55px] text-[30px] font-bold">
                 Welcome, {user && user.name}.
               </h2>
-              <p>{new Date().toLocaleString()}</p>
+              <p>{new Date().getUTCFullYear()}</p>
             </div>
           </div>
-          <button
-            onClick={onLogout}
-            className="bg-[#7FCD91] text-[#333] font-bold px-3 rounded py-2"
-          >
-            <span className="flex items-center justify-center gap-3 text-gray-700 font-bold text-[17px]">
-              Log out <CiLogout size={32} color="#fff" />
-            </span>
-          </button>
         </nav>
         <div className="w-[40%] px-8 py-2 flex gap-3">
           <div

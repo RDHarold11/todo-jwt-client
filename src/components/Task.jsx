@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { deleteTask } from "../features/tasks/taskSlice";
+import { Link } from "react-router-dom";
 
 const Task = ({ task }) => {
   const dispatch = useDispatch();
@@ -15,18 +16,25 @@ const Task = ({ task }) => {
             {new Date(task?.createdAt).toLocaleString("en-us")}
           </p>
         </div>
+
         <AiOutlineDelete
           size={25}
           cursor="pointer"
           color="#FF0060"
           onClick={() => dispatch(deleteTask(task._id))}
         ></AiOutlineDelete>
+        {/* <button>
+          <Link to={`/update/${task._id}`}>Update</Link>{" "}
+        </button> */}
       </div>
       <div className="flex flex-col gap-5 justify-center mt-4 ">
         <p className="text-[15px] ">{task?.description}</p>
         <div>
           {task?.category.map((cat, index) => (
-            <span key={index} className="bg-[#333] px-3 py-1 mt-4 rounded text-[13px]">
+            <span
+              key={index}
+              className="bg-[#333] px-3 py-1 mt-4 rounded text-[13px]"
+            >
               {cat}
             </span>
           ))}

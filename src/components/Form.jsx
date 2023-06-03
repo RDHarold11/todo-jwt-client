@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { createTask, reset } from "../features/tasks/taskSlice";
 import { toast } from "react-toastify";
 import {BsPencil} from "react-icons/bs"
+import {ButtonGroup ,Button} from "@material-tailwind/react"
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -91,7 +92,7 @@ const Form = () => {
             </option>
           </select>
         </div>
-        <button className="bg-[#7FCD91] text-gray-600 mb-2 font-bold px-3 py-2 rounded text-[17px] w-full my-2">
+        <button className="bg-[#7FCD91] text-gray-200 mb-2 font-bold px-3 py-2 rounded text-[17px] w-full my-2">
           Add
         </button>
       </form>
