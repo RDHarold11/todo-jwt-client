@@ -1,9 +1,8 @@
-import React, {useState, useEffect} from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { createTask, reset } from "../features/tasks/taskSlice";
+import React, {useState} from "react";
+import { useDispatch } from "react-redux";
+import { createTask } from "../features/tasks/taskSlice";
 import { toast } from "react-toastify";
 import {BsPencil} from "react-icons/bs"
-import {ButtonGroup ,Button} from "@material-tailwind/react"
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -47,7 +46,7 @@ const Form = () => {
           </label>
           <input
             type="text"
-            placeholder="Enter yor email"
+            placeholder="Enter the text"
             id="title"
             value={title}
             onChange={onChange}

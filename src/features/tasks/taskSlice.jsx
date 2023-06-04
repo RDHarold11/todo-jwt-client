@@ -40,6 +40,29 @@ export const createTask = createAsyncThunk(
   }
 );
 
+export const updateTask = createAsyncThunk(
+  "tasks/update",
+  async ({ id, newTask }, thunkAPI) => {
+    try {
+      const { title, description, category } = newTask;
+      const token = thunkAPI.getState().auth.user.token;
+      return await tasksService.updateTask(
+        id,
+        { title, description, category },
+        token
+      );
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const deleteTask = createAsyncThunk(
   "tasks/delete",
   async (id, thunkAPI) => {
@@ -96,8 +119,8 @@ export const taskSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(deleteTask.fulfilled, (state, action) => {
-        state.isSuccess = true;
         state.isLoading = false;
+        state.isSuccess = true;
         state.tasks = state.tasks.filter(
           (task) => task._id !== action.payload._id
         );
@@ -105,6 +128,24 @@ export const taskSlice = createSlice({
       .addCase(deleteTask.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
+        state.message = action.payload;
+      })
+      .addCase(updateTask.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateTask.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        const update = state.tasks.findIndex(
+          (task) => task._id === action.payload.id
+        );
+        if (update !== -1) {
+          state.tasks[update] = action.payload;
+        }
+      })
+      .addCase(updateTask.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
         state.message = action.payload;
       });
   },
