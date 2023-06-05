@@ -35,7 +35,7 @@ const Update = () => {
     };
     if (title) {
       dispatch(updateTask({ id, newTask }));
-      navigate("/dashboard");
+      navigate("/");
     }
   };
   return (
@@ -108,7 +108,7 @@ const Update = () => {
             <button className="bg-[#7FCD91] text-gray-200 mb-2 font-bold px-3 py-2 rounded text-[17px] w-full my-2">
               Update
             </button>
-            <Link className="text-gray-200 border-b " to="/dashboard">
+            <Link className="text-gray-200 border-b " to="/">
               Back to home
             </Link>
           </div>

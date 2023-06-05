@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import { deleteTask } from "../features/tasks/taskSlice";
+import { deleteTask, addToFavorite } from "../features/tasks/taskSlice";
 import { Link } from "react-router-dom";
 import { BsPencilSquare } from "react-icons/bs";
+import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 
 const Task = ({ task }) => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const Task = ({ task }) => {
       </div>
       <div className="flex flex-col gap-5 justify-center mt-4 ">
         <p className="text-[15px] ">{task?.description}</p>
-        <div>
+        <div className="flex items-center justify-between">
           {task?.category.map((cat, index) => (
             <span
               key={index}
@@ -40,6 +41,13 @@ const Task = ({ task }) => {
               {cat}
             </span>
           ))}
+          <div onClick={() => dispatch(addToFavorite(task._id))}>
+            {task.isFavorite ? (
+              <AiFillStar size={25} cursor="pointer" />
+            ) : (
+              <AiOutlineStar size={25} cursor="pointer" />
+            )}
+          </div>
         </div>
       </div>
     </div>

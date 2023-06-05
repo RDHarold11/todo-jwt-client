@@ -11,7 +11,7 @@ const Navbar = ({ toggle }) => {
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());
-    navigate("/dashboard");
+    navigate("/");
   };
   return (
     <div

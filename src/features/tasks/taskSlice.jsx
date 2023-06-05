@@ -22,6 +22,19 @@ export const getTask = createAsyncThunk("tasks/getAll", async (_, thunkAPI) => {
   }
 });
 
+export const addToFavorite = createAsyncThunk("tasks/addToFavorite", async(id, thunkAPI) => {
+  try {
+    const token = thunkAPI.getState().auth.user.token
+    return await tasksService.addToFavorite(id, token)
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    return thunkAPI.rejectWithValue(message);
+  }
+})
+
 export const createTask = createAsyncThunk(
   "tasks/create",
   async (data, thunkAPI) => {
@@ -124,6 +137,7 @@ export const taskSlice = createSlice({
         state.tasks = state.tasks.filter(
           (task) => task._id !== action.payload._id
         );
+        window.location.reload()
       })
       .addCase(deleteTask.rejected, (state, action) => {
         state.isError = true;
@@ -147,7 +161,24 @@ export const taskSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-      });
+      })
+      .addCase(addToFavorite.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(addToFavorite.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        const task = state.tasks.find((task) => task._id === action.payload.id)
+        if (task) {
+          task.isFavorite = !task.isFavorite
+        }
+        window.location.reload()
+      })
+      .addCase(addToFavorite.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
   },
 });
 

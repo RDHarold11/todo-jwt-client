@@ -25,7 +25,7 @@ const Login = () => {
       toast.error(message);
     }
     if (isSuccess || user) {
-      navigate("/dashboard");
+      navigate("/");
     }
     dispatch(reset());
   }, [user, isError, isSuccess, message, navigate, dispatch]);
@@ -56,7 +56,7 @@ const Login = () => {
 
   return (
     <div className="w-full min-h-screen  flex items-center justify-center bg-[#333]">
-      <section className="max-w-[1200px] mx-auto grid items-center grid-cols-1 lg:grid-cols-2 justify-center gap-3 bg-[#F0EEED] rounded">
+      <section className="max-w-[1200px] mx-auto grid items-center grid-cols-1 lg:grid-cols-2 justify-center gap-3  bg-[#F0EEED] rounded">
         <div className="sm:px-5 px-4 py-5 flex flex-col items-center justify-between md:w-[450px] mx-auto w-[500px]">
           <div className="text-center">
             <h3 className="text-[35px] font-bold">Bienvenido otra vez.</h3>
@@ -106,7 +106,7 @@ const Login = () => {
             </p>
           </div>
         </div>
-        <div className="hidden sm:flex">
+        <div className="hidden lg:flex">
           <img
             src="https://images.pexels.com/photos/2325446/pexels-photo-2325446.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             alt="login img"
