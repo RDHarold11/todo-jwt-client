@@ -10,8 +10,8 @@ const Task = ({ task }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="bg-[#3F3F44] text-gray-100 max-w-[100%] px-4 py-6 rounded-lg gap-3">
-      <div className="border-b max-w-[200px] mb-3 flex items-start justify-between">
+    <div className="bg-[#3F3F44] text-gray-100 max-w-[300px] px-4 py-6 rounded-lg gap-3">
+      <div className="border-b  mb-3 flex items-start justify-between">
         <div>
           <h3 className="text-[17px] font-bold">{task?.title}</h3>
           <p className="my-2 text-gray-400">

@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const API_URL = "https://todoapi-pk3v.onrender.com/api/tasks/";
-/* const API_URL = "http://localhost:5000/api/tasks/"; */
+/* const API_URL = "https://todoapi-pk3v.onrender.com/api/tasks/"; */
+const API_URL = "http://localhost:5000/api/tasks/";
 
 const createTask = async (taskData, token) => {
   const config = {
@@ -29,7 +29,7 @@ const addToFavorite = async (id, token) => {
       Authorization: `Bearer ${token}`,
     },
   };
-  const response = await axios.get(API_URL + id, config);
+  const response = await axios.get(API_URL + "favorites/" + id, config);
   return response.data;
 };
 

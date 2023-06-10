@@ -21,9 +21,9 @@ const Form = () => {
     }))
   }
 
-  const handleSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault()
-    if(!title || !description || !category){
+    if(!title || !description){
       toast.error("Campos vacios")
     } else {
       const newTask = {
@@ -34,8 +34,8 @@ const Form = () => {
   }
 
   return (
-    <div className="mb-5 w-[400px] mx-auto md:w-full mt-5">
-      <form onSubmit={handleSubmit}>
+    <div className="mb-5 md:w-[400px] mx-auto  mt-5">
+      <form onSubmit={onSubmit}>
         <h4 className="text-[25px] font-bold text-center flex items-center justify-center gap-3">Add a new note <BsPencil/></h4>
         <div className="mb-3">
           <label

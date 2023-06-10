@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { register, reset } from "../features/auth/authSlice";
+import { register as registerUser, reset} from "../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Spinner from "../components/Spinner";
 import { AiOutlineLogin } from "react-icons/ai";
+import {useForm} from "react-hook-form"
+import {yupResolver} from "@hookform/resolvers/yup"
+import * as yup from "yup";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +18,15 @@ const Register = () => {
   });
 
   const { name, email, password } = formData;
+
+  const schema = yup.object().shape({
+    name: yup.string().min(4).max(20).required(),
+    email: yup.string().email().required(),
+    password: yup.string().min(8).max(32).required(),
+  })
+
+  const {register, handleSubmit, formState: {errors} } = useForm({resolver: yupResolver(schema)})
+
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   );
@@ -29,8 +41,7 @@ const Register = () => {
     }));
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = () => {
     if (!name || !email || !password) {
       toast.error("Campos vacios");
     } else {
@@ -39,7 +50,7 @@ const Register = () => {
         email,
         password,
       };
-      dispatch(register(userData));
+      dispatch(registerUser(userData));
     }
   };
 
@@ -48,7 +59,7 @@ const Register = () => {
       toast.error(message);
     }
     if (isSuccess || user) {
-      navigate("/dashboard");
+      navigate("/");
     }
     dispatch(reset());
   }, [user, isError, isSuccess, dispatch, navigate]);
@@ -65,13 +76,14 @@ const Register = () => {
             <h3 className="text-[35px] font-bold">Bienvenido</h3>
             <p className="text-gray-400">Registrate con tus credenciales.</p>
           </div>
-          <form className="w-full my-5" onSubmit={onSubmit}>
+          <form className="w-full my-5" onSubmit={handleSubmit(onSubmit)}>
             <div className="">
               <label htmlFor="email" className="text-gray-900 font-semibold">
                 Nombre
               </label>
               <input
                 type="text"
+                {...register("name")}
                 name="name"
                 id="name"
                 onChange={onChange}
@@ -79,6 +91,7 @@ const Register = () => {
                 placeholder="Enter yor nombre"
                 className="block w-full my-5 border px-3 py-3 text-gray-800"
               />
+              <p>{errors.name?.message}</p>
             </div>
             <div className="">
               <label htmlFor="email" className="text-gray-900 font-semibold">
@@ -87,12 +100,14 @@ const Register = () => {
               <input
                 name="email"
                 id="email"
+                {...register("email")}
                 onChange={onChange}
                 value={email}
                 type="email"
                 placeholder="Enter yor email"
                 className="block w-full my-5 border px-3 py-3 text-gray-800"
               />
+              <p>{errors.email?.message}</p>
             </div>
             <div className="">
               <label htmlFor="password" className="text-gray-900 font-semibold">
@@ -101,15 +116,17 @@ const Register = () => {
               <input
                 name="password"
                 id="password"
+                {...register("password")}
                 onChange={onChange}
                 value={password}
                 type="password"
                 placeholder="****"
                 className="block w-full my-5 border px-3 py-3 text-gray-800"
               />
+              <p>{errors.password?.message}</p>
             </div>
             <button className="bg-[#333] text-[#fff] px-3 py-3 rounded text-[19px] w-full">
-            <span className="flex items-center justify-center gap-3">
+              <span className="flex items-center justify-center gap-3">
                 Iniciar sesion <AiOutlineLogin size={30} />
               </span>
             </button>
